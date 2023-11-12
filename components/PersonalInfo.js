@@ -1,6 +1,5 @@
 'use client'
 import { UserContext } from '@/context/UserContext';
-import axios from 'axios';
 import React, { useContext, useEffect, useState } from 'react'
 
 export default function PersonalInfo() {
@@ -40,8 +39,8 @@ export default function PersonalInfo() {
 
             <div className="container w-6/12 flex flex-col gap-8 p-1">
 
-                <input onChange={handleChange} name='username' type="text" value={userData.username} className="md:p-3 p-2 border border-gray-700 w-full" />
-                <input onChange={handleChange} name="email" type="text" value={userData.email} className="md:p-3 p-2 border border-gray-700 w-full" />
+                <input onChange={handleChange} name='username' type="text" value={userData?.username} className="md:p-3 p-2 border border-gray-700 w-full" />
+                <input onChange={handleChange} name="email" type="text" value={userData?.email} className="md:p-3 p-2 border border-gray-700 w-full" />
                 <input onChange={handleChange} name="mobile" type="text" placeholder='mobile number ....' className="md:p-3 p-2 border border-gray-700 w-full" />
 
                 <select onChange={handleChange} className="md:p-3 p-2 border border-gray-700 w-full">

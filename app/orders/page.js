@@ -16,7 +16,7 @@ export default function page() {
     const userData = localStorage.getItem('user');
     const d = JSON.parse(userData);
     setUser(d);
-    getData(d.email);
+    getData(d?.email);
   }, []);
 
   const showToast = (text) => {
@@ -24,30 +24,38 @@ export default function page() {
   };
 
   async function getData(user) {
-
     const q = query(collection(db, "users"), where("email", "==", user));
-    const querySnapShot = await getDocs(q);
-    querySnapShot.forEach((doc) => {
-      setData(doc.data().orders);
-    })
+    try {
+      const querySnapShot = await getDocs(q);
+      querySnapShot.forEach((doc) => {
+        setData(doc.data().orders);
+      });
+    } catch (error) {
+      console.error("Error fetching data:", error);
+    }
   }
 
   async function cancel(d) {
-    const q = query(collection(db, 'users'), where("email", "==", user.email));
-    const res = await getDocs(q);
+    const q = query(collection(db, 'users'), where("email", "==", user?.email));
+    try {
+      const res = await getDocs(q);
 
-    res.forEach(async (doc) => {
-      const userRef = doc.ref;
-      const userData = doc.data();
+      res.forEach(async (doc) => {
+        const userRef = doc.ref;
+        const userData = doc.data();
 
-      const updatedOrders = userData.orders.filter(item => item.title !== d.title);
+        const updatedOrders = userData.orders.filter(item => item.title !== d.title);
 
-      await updateDoc(userRef, { orders: updatedOrders }).then(() => {
-        window.location.reload();
-      })
-    });
-    showToast("order canceled");
+        await updateDoc(userRef, { orders: updatedOrders });
+        setData(updatedOrders); // Update the state directly instead of reloading the page
+        showToast("order canceled");
+      });
+    } catch (error) {
+      console.error("Error canceling order:", error);
+    }
   }
+
+
 
   return (
     <div className='container w-full md:h-[700px]'>

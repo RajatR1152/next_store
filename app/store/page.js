@@ -4,7 +4,6 @@ import FormatPrice from '@/components/FormatPrice';
 import { DataContext } from '@/context/DataContext';
 import Link from 'next/link';
 import React, { useContext, useEffect, useState } from 'react'
-import { AiFillHeart } from 'react-icons/ai';
 import { BsFillGrid3X3GapFill, BsList } from 'react-icons/bs'
 
 export default function page() {

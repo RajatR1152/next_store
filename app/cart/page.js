@@ -27,7 +27,6 @@ export default function page() {
     })
   }
 
-
   return (
 
     <div class="w-full h-screen overflow-x-auto bg-gray-100">
