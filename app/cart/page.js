@@ -3,13 +3,13 @@ import Link from 'next/link';
 import { collection, getDocs, query, where } from 'firebase/firestore';
 import React, { useEffect, useState } from 'react'
 import { db } from '../shared/FirebaseConfig';
+import { useRouter } from 'next/navigation';
 
 export default function page() {
 
-  const [data, setData] = useState([]);
   const [user, setUser] = useState({});
   const [cartData, setCartData] = useState([]);
-
+  const router = useRouter();
 
   useEffect(() => {
     let d = JSON.parse(localStorage.getItem('user'));
@@ -18,6 +18,10 @@ export default function page() {
       getUserInfo(user);
     }
   }, [user]);
+
+  if (!user) {
+    router.push('/login');
+  }
 
   async function getUserInfo(u) {
     const q = query(collection(db, 'users'), where("email", "==", u.email));

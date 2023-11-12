@@ -6,11 +6,13 @@ import { db } from '../shared/FirebaseConfig';
 import FormatPrice from '@/components/FormatPrice';
 import { RiDeleteBin5Line } from 'react-icons/ri'
 import { toast } from 'react-toastify';
+import { useRouter } from 'next/navigation';
 
 export default function page() {
 
+  const router = useRouter();
   const [data, setData] = useState([]);
-  const [user,setUser] = useState([]);
+  const [user, setUser] = useState([]);
 
   useEffect(() => {
     const userData = localStorage.getItem('user');
@@ -22,6 +24,10 @@ export default function page() {
   const showToast = (text) => {
     toast.success(text);
   };
+
+  if (!user) {
+    router.push('/login');
+  }
 
   async function getData(user) {
     const q = query(collection(db, "users"), where("email", "==", user));

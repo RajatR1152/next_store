@@ -2,18 +2,28 @@
 import PersonalInfo from '@/components/PersonalInfo';
 import { UserContext } from '@/context/UserContext';
 import Link from 'next/link';
-import React, { useContext } from 'react'
+import { useRouter } from 'next/navigation';
+import React, { useContext, useEffect } from 'react'
 import { AiFillSetting } from 'react-icons/ai'
 
 export default function page() {
 
+  const router = useRouter();
   const { setIsLogedIn, setUserData } = useContext(UserContext);
+
+  useEffect(() => {
+    let user = localStorage.getItem("user");
+    if (!user) {
+      router.push('/login');
+    }
+  })
 
   function logOut() {
     setIsLogedIn(false);
     setUserData({});
     localStorage.removeItem('user');
     localStorage.removeItem('isLogedIn');
+    router.push('/login');
   }
 
   return (
@@ -32,7 +42,7 @@ export default function page() {
         <Link href={'/store'} passHref>
           <p className="bg-transparent p-3 my-2 text-left w-full text-lg hover:text-white font-semibold text-gray-800 rounded-xl hover:bg-gray-400">recommendation</p>
         </Link>
-        <button onClick={logOut} className="p-3 w-full text-lg my-12 font-semibol rounded-xl bg-violet-800 text-white">log out</button>
+        <button onClick={() => { logOut }} className="p-3 w-full text-lg my-12 font-semibol rounded-xl bg-violet-800 text-white">log out</button>
         <piFillSetting size={25} className='my-auto ms-auto' />
       </div>
 
