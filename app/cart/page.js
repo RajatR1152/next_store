@@ -7,12 +7,14 @@ import { db } from '../shared/FirebaseConfig';
 export default function page() {
 
   const [data, setData] = useState([]);
-  const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+  const [user, setUser] = useState({});
   const [cartData, setCartData] = useState([]);
 
 
   useEffect(() => {
-    if (user) {
+    let d = JSON.parse(localStorage.getItem('user'));
+    setUser(d);
+    if (d) {
       getUserInfo(user);
     }
   }, [user]);

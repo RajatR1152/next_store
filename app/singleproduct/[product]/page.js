@@ -15,7 +15,7 @@ export default function page() {
     const { data2, setData2, quantity } = useContext(DataContext);
     const [productData, setProductData] = useState({});
     const [images, setImages] = useState([]);
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+    const [user, setUser] = useState({});
     const [imgIndex, setImgIndex] = useState(0);
     const [isAdded, setIsAdded] = useState(false);
     const [isOrdered, setIsOrdered] = useState(false);
@@ -28,6 +28,8 @@ export default function page() {
         axios.get('https://dummyjson.com/products').then((res) => {
             setData2(res.data.products);
         });
+
+        setUser(JSON.parse(localStorage.getItem('user')));
 
         const foundProduct = data2.find(d => param.product.replace('%20', ' ') === d.title);
         if (foundProduct) {

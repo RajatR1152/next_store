@@ -12,12 +12,14 @@ export default function page() {
     const [data, setData] = useState([]);
     const [product, setProduct] = useState([]);
     const [userData, setUserData] = useState([]);
-    const [user, setUser] = useState(JSON.parse(localStorage.getItem('user')));
+    const [user, setUser] = useState({});
 
     useEffect(() => {
         axios.get('https://dummyjson.com/products').then((res) => {
             setData(res.data.products);
         });
+
+        setUser(JSON.parse(localStorage.getItem('user')));
 
         const foundProduct = data.find(d => p === d.title);
         if (foundProduct) {
