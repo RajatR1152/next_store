@@ -1,0 +1,32 @@
+[
+    {
+        "name": "smartphones",
+        "image": "https://www.pngmart.com/files/15/Apple-iPhone-12-PNG-Free-Download.png",
+        "off": "18"
+    },
+    {
+        "name": "laptops & computer acceseries",
+        "image": "https://www.netlabindia.com/wp-content/uploads/2019/05/HP-Laptop-PNG-Image.png",
+        "off": "12"
+    },
+    {
+        "name": "fashion and lifestyle",
+        "image": "https://chaldn.com/_mpimage/fashion-lifestyle?src=https%3A%2F%2Feggyolk.chaldal.com%2Fapi%2FPicture%2FRaw%3FpictureId%3D101371&q=low&v=1",
+        "off": "30"
+    },
+    {
+        "name": "smartwatches and smartbands",
+        "image": "https://www.pngmart.com/files/13/Smartwatch-PNG-Transparent.png",
+        "off": "15"
+    },
+    {
+        "name": "android tv's",
+        "image": "https://www.pngmart.com/files/Android-TV-Download-PNG-Image.png",
+        "off": "43"
+    },
+    {
+        "name": "home and kitchen appliences",
+        "image": "https://www.pngmart.com/files/6/Home-Appliance-PNG-Image.png",
+        "off": "32"
+    }
+]
